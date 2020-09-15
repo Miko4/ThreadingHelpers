@@ -1,8 +1,12 @@
+
+#define CATCH_CONFIG_MAIN
+
+#include "Catch2/single_include/catch2/catch.hpp"
 #include "locked.hpp"
 
-int main()
-{
+TEST_CASE("Inner int can be incremented", "int") {
   locked<int> i(5);
-  i.mut([](int& i){ i++; });
-  return i.get() == 6 ? 0 : 1;
+  i.mut([](int& i) { i++; });
+  REQUIRE(i.get() == 6);
 }
+
